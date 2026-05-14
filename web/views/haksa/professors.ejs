@@ -3,7 +3,7 @@
     <div class="text-end mb-2">
         <a class="btn btn-primary px-3" href="/haksa/pro/insert">교수등록</a>
     </div>
-    <table id="tb1" class="table table-striped table-hover"></table>
+    <table id="tbl" class="table table-striped table-hover"></table>
     <script id="temp" type="text/x-handlebars-template">
         <tbody>
             {{#each .}}
@@ -22,7 +22,7 @@
 </div>
 <script>
     getList();
-    $("#tb1").on("click", ".delete", function(){
+    $("#tbl").on("click", ".delete", function(){
         const pcode=$(this).attr("pcode");
         if(confirm(`${pcode}번 교수를 삭제하실래요?`)) {
             $.ajax({
@@ -46,7 +46,7 @@
             success:function(data){
                 console.log(data);
                 const temp=Handlebars.compile($("#temp").html());
-                $("#tb1").html(temp(data));
+                $("#tbl").html(temp(data));
             }
         })
     }
